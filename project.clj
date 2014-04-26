@@ -1,4 +1,4 @@
-(defproject base58 "0.1.0-SNAPSHOT"
+(defproject base58 "0.1.0"
   :description "Bitcoin Base58 encoding and decoding."
   :url "http://github.com/dbasch/base58"
   :license {:name "Eclipse Public License"
