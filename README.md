@@ -2,6 +2,12 @@
 
 Bitcoin Base58 encoding and decoding.
 
+## Install
+
+From [Clojars](https://clojars.org/base58)
+
+    [base58 "0.1.0"]
+
 ## Usage examples
 
 Create a WIF Bitcoin key
