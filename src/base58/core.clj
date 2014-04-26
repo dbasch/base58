@@ -33,7 +33,7 @@
   (when (subset? (set base58string) (set code-string))
     (let [padding (->> base58string
                        (take-while #(= % (first code-string)))
-                       (map (fn [x] (byte 0))))]
+                       (map (constantly (byte 0))))]
       (loop [result 0
              s base58string]
         (if-not (empty? s)
@@ -66,7 +66,10 @@
 (defn encode-check [hash header-byte]
   "Converts a byte array into a bitcoin address (or key) with a header and a checksum."
   (let [with-header (byte-array (cons header-byte hash))
-        checked (map byte (concat with-header (checksum with-header)))]
+        checked (->> with-header
+                     checksum
+                     (concat with-header)
+                     (map byte))]
     (encode checked)))
 
 (defn get-payload [bytes]
