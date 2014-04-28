@@ -1,7 +1,7 @@
 (ns base58.core
   "Functions for encoding byte arrays to Bitcoin addresses/WIF keys, and back."
-  (import java.security.MessageDigest)
-  (require [clojure.set :refer [subset?]]))
+  (:import java.security.MessageDigest)
+  (:require [clojure.set :refer [subset?]]))
 
 ;; The Bitcoin base58 alphabet
 (def code-string "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz")
