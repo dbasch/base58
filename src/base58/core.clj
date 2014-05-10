@@ -39,7 +39,7 @@
                        (map (constantly (byte 0))))]
       (loop [result 0
              s base58string]
-        (if-not (empty? s)
+        (if (seq s)
           (recur (+ (*' result 58) (.indexOf code-string (str (first s))))
                  (rest s))
           (->> result
@@ -63,7 +63,6 @@
   (let [c1 (take-last 4 bytes)
         c2 (->> bytes
                 (drop-last 4)
-                (map byte)
                 byte-array
                 checksum)]
     (= c1 c2)))
@@ -74,8 +73,7 @@
   (let [with-header (byte-array (cons header-byte hash))
         checked (->> with-header
                      checksum
-                     (concat with-header)
-                     (map byte))]
+                     (concat with-header))]
     (encode checked)))
 
 (defn get-payload
@@ -85,7 +83,6 @@
   (->> bytes
        (drop-last 4)
        next
-       (map byte)
        byte-array))
 
 (defn valid?
